@@ -24,13 +24,14 @@ class TrainController < Sinatra::Base
       erb :show
     end
 
-    patch "/trains/:id" do
+    put "/trains/:id" do
       train = Train.find(params["id"])
       train.update(params["train"])
       selected_station = Station.find(params["station"]["id"])
-      current_stations = train.stations
-      newstations = selected_station - current_stations
-      train.stations << newstations
+      # current_stations = train.stations
+      train.stations = []
+      # newstations = selected_station - current_stations
+      train.stations << selected_station
       redirect "trains/#{train.id}"
     end
 

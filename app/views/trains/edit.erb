@@ -9,7 +9,7 @@
 <body>
     <h1>EDITING <%= @train.name %></h1>
     <form action="/trains/<%= @train.id %>" method="POST">
-    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="_method" value="put">
     <label for="train[name]">Name:</label>
     <input type="text" name="train[name]" value="<%=@train.name%>">
     <br>
