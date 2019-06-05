@@ -22,10 +22,9 @@ ActiveRecord::Schema.define(version: 2019_06_05_161300) do
   end
 
   create_table "trains", force: :cascade do |t|
-    t.string "line_color"
+    t.string "name"
     t.string "series"
     t.integer "cars"
-    t.string "destination_name"
   end
 
 end

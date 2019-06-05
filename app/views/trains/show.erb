@@ -8,10 +8,16 @@
 </head>
 <body>
   
-  <h2>Line: </h2> <%= @train.line_color.upcase  %>
+  <h2>Name: </h2> <%= @train.name.upcase  %>
   <h2>Series: </h2> <%= @train.series %>
   <h2>Cars: </h2> <%= @train.cars %>
-  <h2>Destination: </h2> <%= @train.destination_name.upcase %>
-  
+  <br>
+  <br>
+  <h2>STATION STOPS:</h2>
+  <ul>
+  <% @train.stations.each do |station| %>
+  <li><%= station.name %></li>
+  <% end %>
+</ul>
 </body>
 </html>

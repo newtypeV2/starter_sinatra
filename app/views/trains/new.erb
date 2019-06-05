@@ -1,67 +1,32 @@
-<html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script language="javascript" type="text/javascript">
-  function dynamicdropdown(listindex)
-  {
-      switch (listindex)
-      {
-       case "blue" :
-          document.getElementById("destination_name").options[1]=new Option("FRANCONIA-SPRINGFIELD","Franconia-Springfield");
-          document.getElementById("destination_name").options[2]=new Option("LARGO TOWN CENTER","Largo Town Center");
-          break;
-       case "green" :
-          document.getElementById("destination_name").options[1]=new Option("GREENBELT","Greenbelt");
-          document.getElementById("destination_name").options[2]=new Option("BRANCH AVE","Branch Ave");
-          break;
-       case "orange" :
-          document.getElementById("destination_name").options[1]=new Option("VIENNA","Vienna");
-          document.getElementById("destination_name").options[2]=new Option("NEW CARROLLTON","New Carrollton");
-          break;
-       case "red" :
-          document.getElementById("destination_name").options[1]=new Option("SHADY GROVE","Shady Grove");
-          document.getElementById("destination_name").options[2]=new Option("GLENMONT","Glenmont");
-          break;
-       case "silver" :
-          document.getElementById("destination_name").options[1]=new Option("WIEHLE-RESTON EAST","Wiehle-Reston East");
-          document.getElementById("destination_name").options[2]=new Option("LARGO TOWN CENTER","Largo Town Center");
-          break;
-       case "yellow" :
-          document.getElementById("destination_name").options[1]=new Option("HUNTINGTON","Huntington");
-          document.getElementById("destination_name").options[2]=new Option("GREENBELT","Greenbelt");
-          break;
-      }
-      return true;
-  }
-  </script>
-  </head>
-  <title>NEW TRAIN</title>
-  <body>
-  <h1>New Train Form</h1>
-   <form action="/trains" method="POST">
-   <div class="category_div" id="category_div">Line Color:
-      <select name="line_color" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
-      <option value="">Select line</option>
-      <option value="blue">Blue line</option>
-      <option value="green">Green line</option>
-      <option value="orange">Orange line</option>
-      <option value="red">Red line</option>
-      <option value="silver">Silver line</option>
-      <option value="yellow">Yellow line</option>
-      </select>
-   </div>
-   <div class="sub_category_div" id="sub_category_div">Status:
-           <script type="text/javascript" language="JavaScript">
-           document.write('<select name="destination_name" id="destination_name"><option value="">Select Destination</option></select>')
-           </script>
-   <br>
-   <label for="series">Series:</label>
-   <input type="text" name="series">
-   <br>
-   <label for="cars">Cars:</label>
-   <input type="text" name="cars">
-   <br>
-   <input type="submit">
-   </form>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NEW TRAIN</title>
+</head>
+<body>
+    <h1>NEW TRAIN FORM</h1>
+    <form action="/trains" method="POST">
+    <label for="train[name]">Name:</label>
+    <input type="text" name="train[name]">
+    <br>
+    <label for="train[series]">Series:</label>
+    <input type="text" name="train[series]">
+    <br>
+    <label for="train[cars]">Number of Cars:</label>
+    <input type="text" name="train[cars]">
+    <br>
+    <br>
+    <% @stations.each do |station| %>
+        <input type="checkbox" name="station[id][]" value="<%= station.id %>">
+        <%= station.name %> </input>
+        <br>
+    <% end %>
+    <br>
+    <br>
+    <input type="submit" value="CREATE">
+    </form>
+</body>
 </html>
