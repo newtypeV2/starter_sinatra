@@ -9,4 +9,7 @@ mtvernon = Station.find_or_create_by(name:"Mt. Vernon")
 waterfront = Station.find_or_create_by(name:"Waterfront")
 metrocenter = Station.find_or_create_by(name:"Metro Center")
 
-binding.pry
+blue1.stations <<[rosslyn,metrocenter,stadium]
+red1.stations << metrocenter
+silver1.stations <<[rosslyn,metrocenter,stadium]
+orange1.stations <<[rosslyn,metrocenter,stadium]
