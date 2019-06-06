@@ -15,6 +15,9 @@ class TrainController < Sinatra::Base
     post "/trains" do
       train = Train.create(params["train"])
       selected_station = Station.find(params["station_ids"])
+      # selected_station.each do |station|
+      #StationTrain.create(station_id: station.id, train_id: train.id)
+      # end
       train.stations << selected_station
       redirect "/trains/#{train.id}"
     end

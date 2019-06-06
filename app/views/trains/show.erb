@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Train Info</title>
+  <div><a href="/">BACK TO HOME</a></div>
+  <div><a href="/trains">BACK TO INDEX</a></div>
 </head>
 <body>
   
@@ -24,6 +26,7 @@
 <form action="/trains/<%=@train.id%>" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" name="SUBMIT" value="DELETE">
+<input type="button" onclick="window.location.href = '/trains/<%= @train.id %>/edit';" value="EDIT">
 </form>
 </body>
 </html>

@@ -14,7 +14,7 @@ class StationController < Sinatra::Base
 
     post "/stations" do
       station = Station.create(params["station"])
-      selected_train = params["train_ids"]
+      selected_train = Train.find(params["train_ids"])
       station.trains << selected_train
       redirect "/stations/#{station.id}"
     end
@@ -39,5 +39,11 @@ class StationController < Sinatra::Base
       @station = Station.find(params["id"])
       @trains = Train.all
       erb :edit
+    end
+
+    delete "/stations/:id" do
+      station = Station.find(params["id"])
+      station.destroy
+      redirect "/stations"
     end
 end
