@@ -4,24 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Train Info</title>
+  <title>Station Info</title>
 </head>
 <body>
   
-  <h2>Name: </h2> <%= @train.name.upcase  %>
-  <h2>Series: </h2> <%= @train.series %>
-  <h2>Cars: </h2> <%= @train.cars %>
+  <h2>Name: </h2> <%= @station.name.upcase  %>
   <br>
   <br>
   <h2>STATION STOPS:</h2>
   <ul>
-  <% @train.stations.each do |station| %>
-  <li><%= station.name %></li>
+    <li>Name:    Series:   Cars:</li>
+  <% @station.trains.each do |train| %>
+  <li><%= train.name %> - <%= train.series %> - <%= train.cars %></li>
   <% end %>
 </ul>
 <br>
 <br>
-<form action="/trains/<%=@train.id%>" method="POST">
+<form action="/stations/<%=@station.id%>" method="POST">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" name="SUBMIT" value="DELETE">
 </form>

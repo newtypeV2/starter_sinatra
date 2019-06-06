@@ -14,9 +14,9 @@ class TrainController < Sinatra::Base
 
     post "/trains" do
       train = Train.create(params["train"])
-      station_ids = params["station"]["id"]
-      train.stations << Station.find(station_ids)
-      redirect "trains/#{train.id}"
+      selected_station = Station.find(params["station_ids"])
+      train.stations << selected_station
+      redirect "/trains/#{train.id}"
     end
 
     get "/trains/:id" do
@@ -24,15 +24,22 @@ class TrainController < Sinatra::Base
       erb :show
     end
 
-    put "/trains/:id" do
+    patch "/trains/:id" do
+      #still missing validation if no station was selected.
       train = Train.find(params["id"])
       train.update(params["train"])
-      selected_station = Station.find(params["station"]["id"])
-      # current_stations = train.stations
-      train.stations = []
-      # newstations = selected_station - current_stations
-      train.stations << selected_station
-      redirect "trains/#{train.id}"
+      selected_station = Station.find(params["station_ids"])
+      station_to_add = selected_station - train.stations
+      station_to_remove = train.stations - selected_station
+      train.stations << station_to_add
+      train.stations -= station_to_remove
+      redirect "/trains/#{train.id}"
+    end
+
+    delete "/trains/:id" do
+      train = Train.find(params["id"])
+      train.destroy
+      redirect "/trains"
     end
 
     get "/trains/:id/edit" do
