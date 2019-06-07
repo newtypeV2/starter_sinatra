@@ -15,11 +15,11 @@ class TrainController < Sinatra::Base
     post "/trains" do
       binding.pry
       train = Train.create(params["train"])
-      selected_station = Station.find(params["station_ids"])
+      # selected_station = Station.find(params["station_ids"])
       # selected_station.each do |station|
-      #StationTrain.create(station_id: station.id, train_id: train.id)
+      # StationTrain.create(station_id: station.id, train_id: train.id)
       # end
-      train.stations << selected_station
+      # train.stations << selected_station
       redirect "/trains/#{train.id}"
     end
 
@@ -30,13 +30,15 @@ class TrainController < Sinatra::Base
 
     patch "/trains/:id" do
       #still missing validation if no station was selected.
+      # train = Train.find(params["id"])
+      # train.update(params["train"])
+      # selected_station = Station.find(params["station_ids"])
+      # station_to_add = selected_station - train.stations
+      # station_to_remove = train.stations - selected_station
+      # train.stations << station_to_add
+      # train.stations -= station_to_remove
       train = Train.find(params["id"])
       train.update(params["train"])
-      selected_station = Station.find(params["station_ids"])
-      station_to_add = selected_station - train.stations
-      station_to_remove = train.stations - selected_station
-      train.stations << station_to_add
-      train.stations -= station_to_remove
       redirect "/trains/#{train.id}"
     end
 
