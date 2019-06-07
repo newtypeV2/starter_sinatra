@@ -13,6 +13,7 @@ class TrainController < Sinatra::Base
     end
 
     post "/trains" do
+      binding.pry
       train = Train.create(params["train"])
       selected_station = Station.find(params["station_ids"])
       # selected_station.each do |station|
