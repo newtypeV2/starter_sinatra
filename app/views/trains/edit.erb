@@ -23,7 +23,7 @@
     <br>
     <br>
     <% @stations.each do |station| %>
-        <input type="checkbox" name="station_ids[]" value="<%= station.id %>" <%='checked' if @train.stations.include?(station)%>>
+        <input type="checkbox" name="train[station_ids][]" value="<%= station.id %>" <%='checked' if @train.stations.include?(station)%>>
         <%= station.name %> </input>
         <br>
     <% end %>

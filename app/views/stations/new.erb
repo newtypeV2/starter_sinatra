@@ -16,7 +16,7 @@
     <br>
     <br>
     <% @trains.each do |train| %>
-        <input type="checkbox" name="train_ids[]" value="<%= train.id %>">
+        <input type="checkbox" name="station[train_ids][]" value="<%= train.id %>">
         <%= train.name %> </input>
         <br>
     <% end %>
