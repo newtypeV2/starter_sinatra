@@ -14,13 +14,9 @@ class StationController < Sinatra::Base
 
     post "/stations" do
       station = Station.create(params["station"])
-<<<<<<< HEAD
       selected_train = Train.find(params["train_ids"])
       station.trains << selected_train
       redirect "/stations/#{station.id}" 
-=======
-      redirect "/stations/#{station.id}"
->>>>>>> cc192d79abf076a04a502c862aaa083d8a1c9651
     end
 
     get "/stations/:id" do
@@ -29,13 +25,6 @@ class StationController < Sinatra::Base
     end
 
     patch "/stations/:id" do
-      # station = Station.find(params["id"])
-      # station.update(params["station"])
-      # selected_train = Train.find(params["train_ids"])
-      # train_to_add = selected_train - station.trains
-      # train_to_remove = station.trains - selected_train
-      # station.trains << train_to_add
-      # station.trains -= train_to_remove
       station = Station.find(params["id"])
       station.update(params["station"])
       redirect "/stations/#{station.id}"
